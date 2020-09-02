@@ -2,6 +2,7 @@ import pygame
 
 from Game2.Game import Game
 from Game2.Player import Player
+from Game2.Projectile import Projectile
 
 pygame.init()
 
@@ -19,6 +20,7 @@ background = pygame.image.load('assets/bg.jpg')
 #call class Game
 #player = Player()
 game = Game()
+#project = Projectile()
 
 
 running = True
@@ -27,8 +29,17 @@ while running:
     # applique le background(arriere plan)
     screen.blit(background, (0, -200))
 
-    #image of player
+    # image of player
     screen.blit(game.player.image, game.player.rect)
+
+    #projectiles of player
+    for projectile in game.player.all_projectiles:
+           projectile.move()
+           # projectile.move_left()
+
+    # group of projectile
+    # screen.blit(project.image, project.rect)
+    game.player.all_projectiles.draw(screen)
 
     #mettre à jour l'ecran update screen
     pygame.display.flip()
@@ -47,5 +58,14 @@ while running:
             elif event.key == pygame.K_LEFT and game.player.rect.x > 0: #axe abscice
                 print("left")
                 game.player.move_left()
+
+            if event.key == pygame.K_SPACE: #throw projectile
+                  print("throw")
+                  game.player.throw_projectile()
+            if event.key == pygame.K_w:
+                  print("throw in left")
+                  game.player.throw_projectile()
+
+
 
 
