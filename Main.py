@@ -64,7 +64,7 @@ while running:
                   game.player.throw_projectile()
             if event.key == pygame.K_w:
                   print("throw in left")
-                  game.player.throw_projectile()
+                  # game.player.throw_projectile()
 
 
 
